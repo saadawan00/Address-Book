@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 class Book extends Component {
+
+
+
 render(){
     const {data} = this.props
     console.log("data11",data);
@@ -18,10 +21,14 @@ render(){
             key = {i}
             >
             {i+1}. {data.name}, {data.address}
-            <button>
+            <button
+            className = "button-action"
+            >
             Delete
             </button>
-            <button>
+            <button
+            className = "button-action"
+            >
             Edit
             </button>
             </li>

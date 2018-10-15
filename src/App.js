@@ -1,25 +1,65 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Book from './Book.js';
 
 class App extends Component {
+      state = {
+      data: [],
+    }
+
+    handleChange = event => {
+      event.preventDefault();
+      let userObj = {
+          name: '',
+          address: '',
+        };
+      let dataArr = this.state.data;  
+
+      userObj.name = this.refs.name.value;
+      userObj.address = this.refs.address.value;
+      dataArr.push(userObj);
+      this.setState({
+        data: dataArr,
+      })
+      this.refs.myForm.reset();
+      this.refs.name.focus();
+
+    }
   render() {
+    
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
+      <div className="main-div">
+        <p
+        className = "heading-text" 
+        >
+        Address Book
+        </p>
+        <form
+        ref = "myForm"
+        >
+          <input
+          className = "user-input"
+          placeholder = "Enter Name"
+          ref = "name"
+          />
+          <input
+          className = "user-input"
+          placeholder = "Enter Address"
+          ref = "address"
+          />
+          <button
+          className = "button-action"
+          onClick = {this.handleChange}
           >
-            Learn React
-          </a>
-        </header>
+          Submit
+          </button>
+
+        </form>
+        <Book
+        data = {this.state.data}
+        />
+
+
       </div>
     );
   }

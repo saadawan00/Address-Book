@@ -5,6 +5,7 @@ import Book from './Book.js';
 class App extends Component {
       state = {
       data: [],
+      batch: '',
     }
 
     handleChange = event => {
@@ -20,9 +21,20 @@ class App extends Component {
       dataArr.push(userObj);
       this.setState({
         data: dataArr,
+        batch: this.refs.batch.value
       })
       this.refs.myForm.reset();
       this.refs.name.focus();
+      console.log(this.state.batch)
+
+    }
+    handleDelete = e => {
+      console.log("del", e)
+      // this.setState({
+      //   data: 
+      // })
+    }
+    handleEdit = e => {
 
     }
   render() {
@@ -47,6 +59,11 @@ class App extends Component {
           placeholder = "Enter Address"
           ref = "address"
           />
+          <input
+          className = "user-input"
+          placeholder = "Enter Batch"
+          ref = "batch"
+          />
           <button
           className = "button-action"
           onClick = {this.handleChange}
@@ -57,6 +74,9 @@ class App extends Component {
         </form>
         <Book
         data = {this.state.data}
+        batch = {this.state.batch}
+        deleteRecord = {this.handleDelete}
+        editRecord = {this.handleEdit}
         />
 
 
